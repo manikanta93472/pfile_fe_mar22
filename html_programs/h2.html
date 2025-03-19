@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Login Page</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
+		
+		.login-container {
+			width: 300px;
+			background-color: #fff;
+			padding: 20px;
+			border: 1px solid #ddd;
+			margin: 50px auto;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+		
+		.login-form {
+			margin-top: 20px;
+		}
+		
+		.login-form input[type="text"], .login-form input[type="password"] {
+			width: 100%;
+			height: 40px;
+			margin-bottom: 20px;
+			padding: 10px;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+		}
+		
+		.login-form input[type="submit"] {
+			width: 100%;
+			height: 40px;
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		
+		.login-form input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+		
+		.error-message {
+			color: #red;
+			font-size: 12px;
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="login-container">
+		<h2>Login</h2>
+		<form class="login-form" action="/login" method="post" onsubmit="return validateForm()">
+			<input type="text" id="username" name="username" placeholder="Username" required>
+			<input type="password" id="password" name="password" placeholder="Password" required>
+			<div class="error-message" id="password-error"></div>
+			<input type="submit" value="Login">
+		</form>
+		<p>Don't have an account? <a href="/register">Register here</a></p>
+	</div>
+	
+	<script>
+		function validateForm() {
+			var password = document.getElementById("password").value;
+			var passwordError = document.getElementById("password-error");
+			
+			if (password.length < 6) {
+				passwordError.innerHTML = "Password must be at least 6 characters long.";
+				return false;
+			}
+			
+			if (!/^[a-zA-Z0-9]+$/.test(password)) {
+				passwordError.innerHTML = "Password must be alphanumeric.";
+				return false;
+			}
+			
+			return true;
+		}
+	</script>
+</body>
+</html>
